@@ -1,0 +1,49 @@
+{% load static %}
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset= "utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>{% block title %}CADASTRE-ME{% endblock %}</title>
+  <!--Bootstrap CSS-->
+    <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!--CSS Personalizado-->    
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">      
+  </head>
+<body>
+  <!--NavBar-->
+  <nav class="navbar navbar-expand-lg navbar-dark" style="background-color:#6234b8;">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="{% url 'cadastro' %}">Cadastre-me</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarContent">
+        <form class="d-flex ms-auto" role="search">
+          <input class="form-control me-2" type="search" placeholder="Pesquisar" aria-label="Search">
+          <button class="btn btn-outline-light" type="submit">Buscar</button>
+        </form>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Conteiner Principal para mensagens e conteúdo-->
+  <div class="container mt-4">
+    <!--Mensagem do Django-->
+    {% if messages %}
+    {% for message in messages %}
+     <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+      {{ message }}
+      <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+     </div>
+     {% endfor %}
+    {% endif %}
+  <!--Aqui o Conteudo específico de cada Pagina-->
+  {% block conteudo %}{% endblock %}
+  </div>
+    <!--BootStrap Js-->
+    <script  src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+  
+</body>
+</html>

@@ -1,0 +1,42 @@
+{% extends 'usuarios/base.html' %}
+{% block title %}Lista de Usuarios{% endblock %}
+
+{% block conteudo %}
+
+<div class="container mt-5">
+
+    <!--Titulo-->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2> Usuarios Cadastrados</h2>
+        
+    <!--Botao Voltar-->
+    <a href="{% url 'cadastro' %}" class="btn btn-outline-primary"> ←Criar Novo Usuario</a>
+    
+    </div>
+    <!--Card-->
+    <div class="table-responsive">
+        <table class="table table-hover align-middle">
+            <thead class="table-dark">
+                <tr>
+                    <th>Nome</th>
+                    <th>Email</th>
+                    <th class="text-center">Ações</th>
+                </tr>
+            </thead>
+                <tbody>
+                    {%  for usuario in usuarios %}
+                    <tr>
+                        <td><strong>{{ usuario.nome }}</strong></td>
+                        <td><span class="text-muted">{{ usuario.email }}</span></td>
+                        <td class="text-center">
+                        <a href="{% url 'deletar_usuario' usuario.id %}" class="btn btn-danger btn-sm" 
+                        onclick="return confirm('Tem Certeza Que Deseja Excluir')">Excluir</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            
+        </table>
+    </div>
+</div>
+{% endblock %}

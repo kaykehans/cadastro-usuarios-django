@@ -1,0 +1,37 @@
+{% extends 'usuarios/base.html' %} <!--Template Base com Navbar e container de mensagens-->
+{% block title %}Usuários{% endblock %}
+
+{% block conteudo %}
+
+<h2 class="'mb-4">Usuarios Cadastrados</h2>
+
+<!--Lista responsiva usando bootstrap-->
+<div class="table-responsive">
+    <table class="table table-striped table-hover">
+        <thead class="table-dark">
+        <tr>
+            <th>Nome</th>
+            <th>Email</th>
+        </tr>
+        </thead>
+        <!-- Mostrando informações do usuário -->
+         <tbody>
+        {% for usuario in usuarios %}
+        <tr>
+            <td>{{ usuario.nome }}</td>
+            <td>{{ usuario.email }}</td>
+        </tr>
+        {% empty %}
+         <!-- Caso não haja usuários cadastrados -->
+          <tr>
+            <td colsplan="3">Nenhum Usuario Cadastrado até o Momento</td>
+          </tr>
+{% endfor %}
+
+        </tbody>
+    </table>
+</div>
+<!--Tabela limpa, responsiva e organizada com Bootstrap.
+Exibe dados tabulares de forma clara, incluindo tratamento para ausência de registros.
+Demonstrando atenção a UX e boas práticas em Django templates.-->
+{% endblock %}
